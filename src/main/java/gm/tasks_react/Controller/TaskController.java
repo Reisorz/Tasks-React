@@ -25,4 +25,11 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    @GetMapping("/tasks")
+    public List<Task> getTasks() {
+        List<Task> tasks = taskService.listTasks();
+        tasks.forEach(task -> logger.info(task.toString()));
+        return tasks;
+    }
+
 }

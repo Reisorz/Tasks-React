@@ -14,7 +14,7 @@ public class TaskService implements ITaskService{
     private TaskRepository taskRepository;
 
     @Override
-    public List<gm.tasks_react.Model.Task> listTasks() {
+    public List<Task> listTasks() {
         return taskRepository.findAll();
     }
 

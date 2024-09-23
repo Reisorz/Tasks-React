@@ -4,7 +4,7 @@ import gm.tasks_react.Model.Task;
 import java.util.List;
 
 public interface ITaskService {
-    public List<gm.tasks_react.Model.Task> listTasks();
+    public List<Task> listTasks();
 
     public Task searchTaskById(Integer taskId);
 
