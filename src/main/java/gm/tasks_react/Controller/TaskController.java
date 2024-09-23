@@ -17,7 +17,7 @@ import java.util.Map;
 @RestController
 //http://localhost:8080/tasks-app
 @RequestMapping("tasks-app")
-@CrossOrigin(value = "http://localhost:4200")
+@CrossOrigin(value = "http://localhost:3000")
 public class TaskController {
 
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
