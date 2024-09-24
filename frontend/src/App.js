@@ -1,8 +1,13 @@
+import TasksList from "./tasks/TasksList";
+import Navbar from "./templates/Navbar";
+
 function App() {
   return (
-    <div className="container text-center">
-      <h3>Tasks system</h3>
+    <div className="container">
+      <Navbar/>
+      <TasksList/>
     </div>
+
   );
 }
 
