@@ -32,4 +32,10 @@ public class TaskController {
         return tasks;
     }
 
+    @PostMapping("/tasks")
+    public Task addTask(@RequestBody Task task) {
+        logger.info("Task to add: " + task);
+        return taskService.saveTask(task);
+    }
+
 }

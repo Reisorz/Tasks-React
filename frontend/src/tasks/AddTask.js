@@ -1,0 +1,56 @@
+import axios from 'axios';
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+export default function AddTask() {
+    
+    let navigation = useNavigate();
+
+    const[task, setTask] = useState ({
+        taskName:"",
+        responsiblePerson:"",
+        status:""
+    })
+
+    const{taskName, responsiblePerson, status} = task
+
+    const onInputChange = (e) => {
+        setTask({...task, [e.target.name]: e.target.value})
+    }
+
+    const onSubmit = async(e) => {
+        e.preventDefault();
+        const urlBase = "http://localhost:8080/tasks-app/tasks";
+        await axios.post(urlBase, task);
+        navigation('/');
+    }
+
+  return (
+<div className="container">
+    <div className="container text-center" style={{margin: "30px"}}>
+        <h3>Add task</h3>
+    </div>
+    <form onSubmit={(e) => onSubmit(e)}>
+        <div className="mb-3">
+          <label htmlFor="taskName" className="form-label">Task</label>
+          <input type="text" className="form-control" id="taskName" name="taskName" required={true}
+          value={taskName} onChange={(e) => onInputChange(e)} />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="responsiblePerson" className="form-label">Responsible person</label>
+          <input type="text" className="form-control" id="responsiblePerson" name="responsiblePerson"
+           value={responsiblePerson} onChange={(e) => onInputChange(e)}/>
+        </div>
+        <div className="mb-3">
+            <label htmlFor="status" className="form-label">Status</label>
+            <input type="text" className="form-control" id="status" name="status"
+             value={status} onChange={(e) => onInputChange(e)}/>
+        </div>
+        <div className="container text-center" style={{margin: "30px"}}>
+            <button type="submit" className="btn btn-warning btn-sm me-3">Add task</button>
+            <a href="/" className="btn btn-danger btn-sm me-3">Return</a>
+        </div>
+      </form>
+</div>
+  )
+}

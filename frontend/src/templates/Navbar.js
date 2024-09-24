@@ -1,9 +1,10 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
     <div classNameName="container">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container-fluid">
           <a className="navbar-brand" href="/">
             Tasks system
@@ -27,9 +28,9 @@ export default function Navbar() {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/add-task">
+                <Link className="nav-link active" to="/add-task">
                   Add task
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
