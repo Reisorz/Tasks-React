@@ -38,4 +38,37 @@ public class TaskController {
         return taskService.saveTask(task);
     }
 
+    @GetMapping("/tasks/{id}")
+    public ResponseEntity<Task> searchTaskById(@PathVariable Integer id) {
+        Task task = taskService.searchTaskById(id);
+        if (task == null)
+            throw new NotFoundExecption("Could not find the task with id: " + id);
+        return ResponseEntity.ok(task);
+    }
+
+    @PutMapping("/tasks/{id}")
+    public ResponseEntity<Task> editTask(@PathVariable Integer id, @RequestBody Task taskReceived) {
+        Task task = taskService.searchTaskById(id);
+        if(task == null) {
+            throw new NotFoundExecption("Could not find task with id: " + id);
+        }
+        task.setTaskName(taskReceived.getTaskName());
+        task.setResponsiblePerson(taskReceived.getResponsiblePerson());
+        task.setStatus(taskReceived.getStatus());
+        taskService.saveTask(task);
+        return ResponseEntity.ok(task);
+    }
+
+    @DeleteMapping("/tasks/{id}")
+    public ResponseEntity<Map<String, Boolean>> deleteTask (@PathVariable Integer id) {
+        Task task = taskService.searchTaskById(id);
+        if(task == null) {
+            throw new NotFoundExecption("Could not find task with id: " + id);
+        }
+        taskService.deleteTask(task);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("Deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+    }
+
 }
